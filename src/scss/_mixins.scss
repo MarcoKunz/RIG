@@ -1,0 +1,44 @@
+// Mixins for RIG
+
+@mixin sexy-underline($color, $percent: 90%) {
+  $_sexyUnderlineBottomColor: #fff;
+  background-image: linear-gradient(to bottom, $_sexyUnderlineBottomColor 0%, $color 1%);
+  background-size: 1px 1px;
+  background-position: 0 $percent;
+  background-repeat: repeat-x;
+}
+
+@mixin appearance($value) {
+  -webkit-appearance: #{$value}; // Safari Webkit
+  -moz-appearance: #{$value}; // Firefox
+  appearance: #{$value};
+}
+
+@mixin smaller-than($breakpoint-name, $removeValue: 0) {
+  $width: map-get($m-breakpoints, $breakpoint-name);
+  @media screen and (max-width: #{$width - $removeValue}) {
+    @content;
+  }
+}
+
+@mixin larger-than($breakpoint-name, $addValue: 0) {
+  $width: map-get($m-breakpoints, $breakpoint-name);
+  @media screen and (min-width: #{$width + $addValue}) {
+    @content;
+  }
+}
+
+@mixin text-selection {
+
+  &::-webkit-selection { // scss-lint:disable VendorPrefix
+    @content;
+  }
+
+  &::-moz-selection { // scss-lint:disable VendorPrefix
+    @content;
+  }
+
+  &::selection {
+    @content;
+  }
+}

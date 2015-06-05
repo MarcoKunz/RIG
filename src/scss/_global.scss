@@ -1,0 +1,201 @@
+//
+// GENERAL SETTINGS
+//
+
+html {
+  font-size: $base-font-size;
+
+  @include smaller-than('small-screen') {
+    font-size: round($base-font-size*1.2);
+  }
+
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  color: color('body');
+  font-family: $f-body;
+  text-align: center;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+div,
+article {
+  display: block;
+  box-sizing: border-box; // Very important for everything
+}
+
+//
+// Typographic Settings
+//
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.like-h1,
+.like-h2,
+.like-h3,
+.like-h4,
+.like-h5,
+.like-h6 {
+  font-family: $f-heading;
+  line-height: 1.2em;
+  margin: .6em 0;
+}
+
+h1,
+.like-h1 {
+  font-size: 2.5rem;
+  z-index: z-index('header');
+}
+
+h2,
+.like-h2 {
+  font-size: 2rem;
+}
+
+h3,
+.like-h3 {
+  font-size: 1.6rem;
+}
+
+h4,
+.like-h4 {
+  font-size: 1.4rem;
+}
+
+h5,
+.like-h5 {
+  font-size: 1.2rem;
+}
+
+h6,
+.like-h6 {
+  font-size: 1.2rem;
+  font-weight: 400;
+}
+
+ul {
+  list-style-type: square;
+  margin: 0;
+  padding: $base-padding/3 0 $base-padding/3 1em;
+}
+
+// Create Customs Ordered Lists like
+// 1. Item
+//    1.1 Nested
+//    1.2 Nested
+//        1.2.1 Supernested
+
+ol {
+  list-style: none;
+  counter-reset: ol;
+  padding: $base-padding/3 0 $base-padding/3 $base-padding;
+
+  li::before {
+    content: counters(ol, '.') '.';
+    counter-increment: ol;
+    margin-right: .5em;
+  }
+}
+
+
+p {
+  font-size: 1rem;
+  line-height: 1.4em;
+
+  @include smaller-than('small-screen') {
+    line-height: 1.2em;
+  }
+
+  a {
+    margin-left: .3em;
+    margin-right: .3em;
+  }
+}
+
+em {
+  font-style: italic;
+}
+
+strong {
+  font-weight: 700;
+}
+
+a {
+  @include sexy-underline(color('anchor'));
+  color: color('anchor');
+  transition: color 200ms, background-image 200ms;
+  text-decoration: none;
+
+  &:hover {
+    @include sexy-underline(color('anchor', 'hover'));
+    color: color('anchor', 'hover');
+  }
+}
+
+code,
+pre {
+  font-family: $f-code;
+  border-radius: $base-border-radius;
+  color: color('code');
+  background: color('code', 'bg');
+}
+
+code {
+  padding: .1em .4em;
+}
+
+pre {
+  display: block;
+
+  padding: 0;
+
+  code {
+    display: block;
+
+    padding: $base-padding;
+    overflow-x: auto;
+  }
+}
+
+a,
+button {
+  cursor: pointer;
+}
+
+// Helper Classes for typography
+.ta-left {
+  text-align: left;
+}
+
+.ta-right {
+  text-align: right;
+}
+
+.ta-center {
+  text-align: center;
+}
+
+.text-italic {
+  font-style: italic;
+}
+
+.text-bold {
+  font-weight: bold;
+}
+
+.text-underline {
+  @include sexy-underline(color('body'));
+}
+
+.text-slash {
+  @include sexy-underline(color('body'), 50%);
+}

@@ -1,0 +1,147 @@
+doctype html
+html(lang="en")
+  head
+    title RIG by Codeship
+    meta(name="viewport" content="width=device-width, initial-scale=1")
+
+    //- Loading the basic RIG Framework
+    link(rel="stylesheet" href="/assets/css/rig.css")
+
+    //- Extra Styling for the RIG layout page
+    link(rel="stylesheet" name="presentation" href="/assets/css/rig-presentation.css")
+
+    //- Loading Font Awesome
+    link(rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css")
+
+    link(rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/styles/github.min.css")
+
+    //- Loading other Libraries
+    //- -----------------------
+    //- Yes, it's not optimized yet as this is work in progress and its for now only to GSD :)
+    script(src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js")
+    script(src="//cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js")
+
+    script(src="https://rawgit.com/jevin/Autogrow-Textarea/master/jquery.autogrowtextarea.min.js")
+    script(src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/highlight.min.js")
+    script(src="//cdn.jsdelivr.net/velocity/1.2.2/velocity.min.js")
+    script(src="//cdn.jsdelivr.net/velocity/1.2.2/velocity.ui.min.js")
+
+  body
+
+    //- All the Markup for our menu.
+    //- It automatically jumps from vertical to horizontal. No copy paste of menu entries
+
+    //- Example menu left offcanvas and horizontal
+    button.flexMenuToggleButton.-right(data-rig-flexmenu-element="toggle"): span.icon.fa.fa-bars
+    .flexMenu.-left.-sticky(data-rig-ui-menu="horizontal" data-rig-flexmenu-element="menu")
+      nav.flexMenu_nav
+        .flexMenu_block.-left.-logo
+          a(href="/"): h2 R
+        ul.flexMenu_block.-right
+          li.flexMenu_block_item: a(href="#toc") Table of Contents
+          li.flexMenu_block_item: a(href="#toggle") Toggle Raw
+          li.flexMenu_block_item: a(href="https://github.com/codeship/RIG" target="_blank") RIG on Github
+          li.flexMenu_block_item: a(href="https://codeship.com" target="_blank") Codeship
+
+    //- Fancy Looking Title Block
+    .titleBlock
+      h1
+        | RIG
+        span.version 2.0
+
+    .container
+      .grid
+        .row
+          .col.m50.m-offset20
+            :markdown
+              ## An aesthetically unopinionated CSS Framework
+              <span class="byCodeship">by Codeship</span>
+
+              Hello and welcome to RIG.
+              You may wonder what it is and why there is the necessity for another CSS Framework.
+
+              This project was created out of the frustration in working with many different CSS frameworks. For me it seemed there are some frameworks that try to do everything and come with everything you could possibly dream off, but visually forcing you in a certain direction.
+              Other frameworks tend to start on a lower level but also ignoring a tons of necessary styilings or ignoring good parts of other frameworks.
+
+              **RIG framework tries to leverage good parts and best practices on a very fundamental level.**
+
+              The main concept behind RIG is *simplicity* and to the aim to provide just as much as you actually need without putting you on the spot for adopting a *look & feel*.
+
+              Even for this early stage I started using RIG on various projects and threw various challenges at it where I was pretty happy with the result. It's not finished yet, but it certainly goes in the right direction and I would be more than happy to get anyones feedback on it.
+
+              Go ahead and check out the [Table of Contents](#toc) and see what this framework has to offer.
+              Also you can click [Toggle Raw](#toggle) (also in the menu) as it will show you this page with pure RIG without the style additions.
+
+              Best, <br>
+              [*Roman Kuba*](https://twitter.com/Codebryo)
+
+            hr
+
+            include ./partials/_toc.jade
+
+        include ./partials/_typography.jade
+        include ./partials/_grid.jade
+        include ./partials/_forms.jade
+        include ./partials/_menu.jade
+
+    footer
+      .grid
+        .row
+          .col.m50
+            p RIG Framework is shared under the GPL v3 License
+          .col.m50.ta-right
+            p This page uses highlight.js for coloring codeblocks.
+        .row
+          .col.m20
+            p &copy; 2015 by Codeship
+          .col.m60.ta-center
+            p
+              | A project by
+              a(href="https://twitter.com/Codebryo" target="_blank") @Codebryo
+              | and made possible through
+              a(href="https://twitter.com/codeship" target="_blank") @codeship
+          .col.m20.ta-right
+            p
+              a(href="https://github.com/codeship/RIG" target="_blank") Find RIG on Github
+
+    script(src="/assets/js/rig.js" async="true")
+    script(type="text/javascript").
+      hljs.initHighlightingOnLoad();
+
+    script(type="text/javascript").
+
+      $('a','#toc').on('click', function(e) {
+        var target = $(this).attr('href');
+        $(target).velocity("scroll", { duration: 350, offset: -70 });
+      });
+
+      $('a[href=#toc]').on('click', function(e) {
+        $('#toc').velocity("scroll", { duration: 350, offset: -70 });
+      });
+
+      $link = $('link[name=presentation]');
+      originalHref = $link.attr('href');
+
+      $('a[href=#toggle]').on('click', function(e) {
+
+        if($link.attr('href') == '') {
+          $link.attr('href', originalHref);
+        }
+        else {
+          $link.attr('href', '');
+        }
+
+      });
+
+
+      console.log($('link[name=presentation]'));
+
+    script(type='text/javascript').
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-63426464-1', 'auto');
+      ga('send', 'pageview');
+

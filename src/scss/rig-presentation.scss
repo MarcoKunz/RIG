@@ -1,0 +1,135 @@
+@import 'variables';
+@import 'mixins';
+@import 'functions';
+
+.container {
+  padding: $base-padding;
+}
+
+.flexMenu_block_item {
+  padding: 0 10px;
+}
+
+.example {
+  color: rgba(#000, .5); // scss-lint:disable ColorVariable
+}
+
+.byCodeship {
+  display: inline-block;
+  transform: translateY(-100%);
+  font-style: italic;
+}
+
+.section-title {
+  font-size: 1rem;
+  text-transform: uppercase;
+  padding: .5em 0;
+  border-bottom: 1px solid color('body');
+
+  margin-top: 100px;
+}
+
+.flexMenuToggleButton {
+  z-index: 1;
+  background: #000;       // scss-lint:disable ColorVariable
+  color: #fff;            // scss-lint:disable ColorVariable
+  border: 3px solid #fff; // scss-lint:disable ColorVariable
+  height: 40px;
+  width: 40px;
+
+  &:focus {
+    outline: none;
+  }
+}
+
+.flexMenu_block.-logo {
+  a {
+    padding: 0;
+  }
+
+  h2 {
+    border: 3px solid #000; // scss-lint:disable ColorVariable
+    height: 40px;
+    width: 40px;
+    line-height: 45px;
+    margin: 10px;
+    text-align: center;
+    transition: border-color 200ms;
+  }
+
+  a:hover {
+    color: #fff;           // scss-lint:disable ColorVariable
+    background: #000;      // scss-lint:disable ColorVariable
+
+    h2 {
+      border-color: #fff;  // scss-lint:disable ColorVariable
+    }
+  }
+}
+
+// Special Coloring for the GRID Blocks
+.grid-presentation {
+  .col {
+    background: #c6e2ff; // scss-lint:disable ColorVariable
+    padding: 0;
+    border-left: $base-col-padding solid rgba(#000, .1);
+    border-right: $base-col-padding solid rgba(#000, .1);
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+    &.-cling {
+      border: 0;
+    }
+
+    &.-clingLeft {
+      border-left: 0;
+    }
+
+    &.-clingRight {
+      border-right: 0;
+    }
+  }
+}
+
+// Make a beautiful Titleblock for RIG
+.titleBlock {
+  position: relative;
+
+  height: 80vh;
+  background-image: url('/assets/imgs/title.jpg');
+  background-position: center center;
+
+  @include larger-than('medium-screen') {
+    margin-top: 60px;
+  }
+
+  h1 {
+    position: absolute;
+
+    top: 50%;
+    left: 50%;
+    height: 100px;
+    width: 100px;
+    margin: 0;
+    color: #fff; // scss-lint:disable ColorVariable
+    border: 3px solid #fff; // scss-lint:disable ColorVariable
+    line-height: 100px;
+    transform: translate(-50%, -50%);
+
+    .version {
+      position: absolute;
+
+      left: 0;
+      bottom: 5px;
+      width: 100%;
+      font-size: .9rem;
+      line-height: 1em;
+    }
+  }
+}
+
+// Footer
+footer {
+  border-top: 2px solid rgba(#000, .2); // scss-lint:disable ColorVariable
+  background: #c6e2ff; // scss-lint:disable ColorVariable
+}

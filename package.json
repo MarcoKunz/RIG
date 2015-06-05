@@ -1,0 +1,34 @@
+{
+  "name": "RIG",
+  "description": "An aesthetically unopinionated CSS Framework by Codeship",
+  "author": "Roman Kuba (roman@codeship.com)",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/codeship/rig.git"
+  },
+  "devDependencies": {
+    "browser-sync": "*",
+    "del": "*",
+    "gulp": "*",
+    "gulp-autoprefixer": "*",
+    "gulp-coffee": "*",
+    "gulp-concat": "*",
+    "gulp-filter": "*",
+    "gulp-if": "*",
+    "gulp-include": "*",
+    "gulp-jade": "*",
+    "gulp-notify": "*",
+    "gulp-plumber": "*",
+    "gulp-rename": "*",
+    "gulp-rev-all": "*",
+    "gulp-sass": "*",
+    "gulp-scss-lint": "*",
+    "gulp-sourcemaps": "^1.5.2",
+    "gulp-uglify": "*",
+    "gulp-watch": "*",
+    "marked": "^0.3.3",
+    "require-dir": "*",
+    "yargs": "*"
+  },
+  "dependencies": {}
+}

@@ -1,0 +1,248 @@
+// General Settings
+// scss-lint:disable QualifyingElement
+#{$all-text-inputs},
+textarea,
+select {
+  display: block;
+
+  width: 100%;
+  font-size: 1rem;
+  border: 1px solid color('input', 'border');
+  border-radius: $base-border-radius;
+  box-sizing: border-box;
+  transition: border 200ms;
+}
+
+// scss-lint:disable QualifyingElement
+input[type="checkbox"],
+input[type="radio"] {
+  cursor: pointer;
+}
+
+// scss-lint:disable QualifyingElement
+#{$all-text-inputs-hover},
+textarea:hover,
+select:hover {
+  border: 1px solid color('input', 'borderHover');
+}
+
+// scss-lint:disable QualifyingElement
+#{$all-text-inputs-focus},
+textarea:focus,
+select:focus {
+  outline: none;
+  box-shadow: none;
+  border: 1px solid color('input', 'borderHover');
+}
+
+// scss-lint:enable QualifyingElement
+// Labels
+.label {
+  display: block;
+  position: relative;
+
+  width: 100%;
+  padding: $base-padding 0;
+  box-sizing: border-box;
+}
+
+.label_title {
+  display: block;
+}
+
+// Input Specific
+#{$all-text-inputs} {
+  height: 3em;
+  line-height: 3em;
+  padding: 0 #{$base-padding/2};
+}
+
+// Select Specific
+select { // scss-lint:disable QualifyingElement
+  @include appearance(none);
+  height: 3em;
+  line-height: 3em;
+  padding: 0 $base-padding/2;
+  background: color('body', 'bg');
+  background-image: url('data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/PjwhRE9DVFlQRSBzdmcgIFBVQkxJQyAnLS8vVzNDLy9EVEQgU1ZHIDEuMS8vRU4nICAnaHR0cDovL3d3dy53My5vcmcvR3JhcGhpY3MvU1ZHLzEuMS9EVEQvc3ZnMTEuZHRkJz48c3ZnIGhlaWdodD0iNTEycHgiIGlkPSJMYXllcl8xIiBzdHlsZT0iZW5hYmxlLWJhY2tncm91bmQ6bmV3IDAgMCA1MTIgNTEyOyIgdmVyc2lvbj0iMS4xIiB2aWV3Qm94PSIwIDAgNTEyIDUxMiIgd2lkdGg9IjUxMnB4IiB4bWw6c3BhY2U9InByZXNlcnZlIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIj48cGF0aCBkPSJNOTguOSwxODQuN2wxLjgsMi4xbDEzNiwxNTYuNWM0LjYsNS4zLDExLjUsOC42LDE5LjIsOC42YzcuNywwLDE0LjYtMy40LDE5LjItOC42TDQxMSwxODcuMWwyLjMtMi42ICBjMS43LTIuNSwyLjctNS41LDIuNy04LjdjMC04LjctNy40LTE1LjgtMTYuNi0xNS44djBIMTEyLjZ2MGMtOS4yLDAtMTYuNiw3LjEtMTYuNiwxNS44Qzk2LDE3OS4xLDk3LjEsMTgyLjIsOTguOSwxODQuN3oiLz48L3N2Zz4=');
+  background-size: 15px;
+  background-repeat: no-repeat;
+  background-position: right $base-padding/2 center;
+}
+
+// Textarea Specific
+textarea { // scss-lint:disable QualifyingElement
+  resize: vertical; // No Horizontal Resizing as this tends to break the UX
+  padding: .7em; // half of line-height
+  line-height: 1.4em;
+  min-height: 1.4em*11; // Lines of code +1
+}
+
+// Checkbox
+
+.label.-checkbox,
+.label.-radio {
+  padding-left: 1.5em;
+  cursor: pointer;
+  user-select: none;
+
+  input[type="checkbox"],
+  input[type="radio"] {
+    position: absolute;
+
+    top: 50%;
+    left: 0;
+    margin: 0;
+    transform: translateY(-50%);
+  }
+}
+
+.label.-checkbox {          // scss-lint:disable MergeableSelector
+  input[type="checkbox"] {  // scss-lint:disable QualifyingElement
+    border-radius: 10%;
+  }
+}
+
+.label.-radio {             // scss-lint:disable MergeableSelector
+  input[type="radio"] {     // scss-lint:disable QualifyingElement
+    border-radius: 50%;
+  }
+}
+
+
+.radiogroup {
+  .label {
+    padding-top: $base-padding/2;
+    padding-bottom: $base-padding/2;
+  }
+
+  &.-horizontal {
+
+    .label {
+      padding: $base-padding/2 $base-padding;
+      text-align: center;
+    }
+
+    input[type="radio"] {    // scss-lint:disable QualifyingElement
+      position: relative;
+    }
+  }
+}
+
+$switchbutton-width: 30px;
+
+.switchbutton {
+  display: inline-block;
+  position: relative;
+
+  font-size: 0;
+  user-select: none;
+
+  .label {
+    display: inline-block;
+    position: relative;
+
+    width: 120px;
+    padding: 0;
+    line-height: $switchbutton-width;
+    font-size: 1rem;
+  }
+
+  .label.-on {        // scss-lint:disable MergeableSelector
+    padding-right: $switchbutton-width + 10;
+    text-align: right;
+  }
+
+  .label.-off {       // scss-lint:disable MergeableSelector
+    padding-left: $switchbutton-width + 10;
+    text-align: left;
+  }
+
+  .label_title {
+    display: block;
+  }
+
+  // scss-lint:disable QualifyingElement
+  input[type="radio"],
+  input[type="checkbox"] {
+    position: absolute;
+
+    visibility: hidden;
+  }
+
+}
+
+.switchbutton_base {
+  position: absolute;
+
+  top: 0;
+  left: 50%;
+  height: $switchbutton-width;
+  width: $switchbutton-width * 2;
+  background: color('switch');
+  transform: translateX(-$switchbutton-width);
+  pointer-events: none;
+  border-radius: $switchbutton-width / 2;
+}
+
+.switchbutton_marker {
+  display: inline-block;
+  position: absolute;
+
+  left: 50%;
+  height: $switchbutton-width;
+  width: $switchbutton-width;
+  border-radius: 50%;
+  border: 2px solid darken(color('switch'), 10%);
+  background: color('switch', 'marker');
+  transform: translateX(-100%);
+  transition: transform 200ms ease-in;
+  pointer-events: none;
+}
+
+.switchbutton.-radio { // scss-lint:disable MergeableSelector
+
+  .switchbutton_base {
+    background: color('switch', 'active');
+  }
+
+  input.on:checked ~ .switchbutton_marker { // scss-lint:disable QualifyingElement
+    transform: translateX(-100%);
+  }
+
+  input.off:checked ~ .switchbutton_marker { // scss-lint:disable QualifyingElement
+    transform: translateX(0);
+  }
+
+}
+
+.switchbutton.-checkbox { // scss-lint:disable MergeableSelector
+
+  .switchbutton_base::after {
+    content: '';
+    position: absolute;
+
+    top: 0;
+    left: 0;
+    height: $switchbutton-width;
+    width: $switchbutton-width * 2;
+    background: color('switch', 'active');
+    border-radius: $switchbutton-width / 2;
+    transform-origin: 50% 50%;
+    transform: scale3d(0, 0, 0);
+    transition: transform 200ms ease-in;
+  }
+
+  input:not(:checked) ~ .switchbutton_marker { // scss-lint:disable QualifyingElement
+    transform: translateX(-100%);
+  }
+
+  input:checked ~ .switchbutton_marker { // scss-lint:disable QualifyingElement
+    transform: translateX(0);
+  }
+
+  input:checked ~ .switchbutton_base::after { // scss-lint:disable QualifyingElement
+    transform: scale3d(1, 1, 1);
+  }
+
+}

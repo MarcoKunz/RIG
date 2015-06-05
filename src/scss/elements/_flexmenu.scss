@@ -1,0 +1,263 @@
+.flexMenu {
+  display: inline-block;
+  position: fixed;
+
+  top: 0;
+  height: 100vh;
+  width: 100%;
+  max-width: $e-flexmenu;
+  background: color('menu', 'bg');
+  overflow-x: hidden;
+  overflow-y: scroll;
+  text-align: left;
+  z-index: z-index('flexmenu');
+
+  @include smaller-than('medium-screen') {
+    transition: transform 300ms;
+
+    &.-left {
+      transform: translateX(-100%);
+    }
+
+    &.-right {
+      transform: translateX(100%);
+    }
+
+    &.is-open {
+      transform: translateX(0);
+    }
+  }
+
+  // Menu Can be attached left or right
+  &.-left {
+    left: 0;
+    border-right: 1px solid color('menu', 'border');
+  }
+
+  &.-right {
+    right: 0;
+    border-left: 1px solid color('menu', 'border');
+  }
+
+  // Have an Offcanvas Menu on small screens
+
+  a {
+    display: block;
+    background-image: none;
+  }
+}
+
+.flexMenu_nav {
+  display: block;
+}
+
+// There is also a Toggle Button for showing the menu when offcanvas
+.flexMenuToggleButton {
+  position: fixed;
+
+  top: $base-padding;
+  left: $base-padding;
+  right: $base-padding;
+
+  @include larger-than('medium-screen') {
+    display: none;
+  }
+
+  &.-left {
+    right: auto;
+  }
+
+  &.-right {
+    left: auto;
+  }
+}
+
+// The Flexmenu can have several blocks
+.flexMenu_block {
+  padding: 0 $base-padding;
+  z-index: z-index('flexmenu')+1;
+
+  a {
+    display: block;
+
+    padding: round($base-padding/4) 0;
+  }
+
+  // Specail Case of a logo block
+  &.-logo {
+    padding: 0;
+
+    > a {
+      transition: color 300ms, background 300ms;
+      padding: 0 $base-padding;
+      text-decoration: none;
+      background-image: none;
+      color: color('body');
+
+      &:hover {
+        color: color('anchor', 'hover');
+        background: color('box', 'bg');
+      }
+    }
+  }
+}
+
+// This makes sense if a block is a list and has multiple items
+.flexMenu_block_item {
+  display: block;
+  position: relative;
+
+  > a {
+    padding: round($base-padding/4) 0;
+  }
+}
+
+// If the menu is not a horizontal one,
+// add paddings to the container
+// This is not output correctly, but worked before :(
+
+.flexMenu:not([data-rig-ui-menu=horizontal]) {
+
+  @include larger-than('medium-screen') {
+
+    &.-left ~ .container {
+      padding-left: $e-flexmenu;
+    }
+
+    &.-right ~ .container {
+      padding-right: $e-flexmenu;
+    }
+  }
+
+  @include larger-than('large-screen', 300px) {
+
+    &.-left ~ .container {
+      padding-left: $e-flexmenu/2;
+    }
+
+    &.-right ~ .container {
+      padding-right: $e-flexmenu/2;
+    }
+  }
+
+  @include larger-than('large-screen', 400px) {
+    &.-left ~ .container {
+      padding-left: $e-flexmenu/3;
+    }
+
+    &.-right ~ .container {
+      padding-right: $e-flexmenu/3;
+    }
+  }
+
+  @include larger-than('large-screen', 600px) {
+
+    &.-left ~ .container {
+      padding-left: 0;
+    }
+
+    &.-right ~ .container {
+      padding-right: 0;
+    }
+  }
+
+}
+
+// Add Horizontal Menu when screen has reached the bigger size
+// Add Fallback for Browsers that don't support Flexbox
+@include larger-than('medium-screen') {
+
+  .flexMenu[data-rig-ui-menu=horizontal] {
+    display: block;
+    position: relative;
+
+    height: auto;
+    max-width: 100%;
+    border: 0;
+    border-bottom: 1px solid color('menu', 'border');
+    overflow: visible;
+
+    &.-sticky {
+      position: fixed;
+
+      + .container {
+        margin-top: 4em;
+      }
+    }
+
+
+    .flexMenu_nav {
+      display: table;
+
+      width: 100%;
+    }
+
+    .flexMenu_block {
+      display: table-cell;
+      vertical-align: middle;
+
+      height: auto;
+      text-align: left;
+
+      &.-left,
+      &.-right {
+        width: 1%;
+      }
+
+      &.-left {
+        margin-left: 0;
+      }
+
+      &.-right {
+        margin-right: 0;
+        text-align: right;
+      }
+    }
+
+    .flexMenu_block_item {
+      display: inline-block; // If no Flexbox support
+    }
+  }
+
+  // If the Browser supports flexbox
+  // Classname is without camelcase as its a valid css attribute
+  .flexbox {
+
+    .flexMenu[data-rig-ui-menu=horizontal] {
+
+      .flexMenu_nav {
+        display: flex;
+
+        justify-content: space-between;
+      }
+
+      .flexMenu_block {
+        display: flex;
+
+        flex-direction: column;
+        flex-grow: 1; // Let the Box fill out the rest
+        // Align Everything centered on x and y axis
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+
+        &.-left,
+        &.-right {
+          width: auto;
+          flex-grow: 0;
+        }
+      }
+
+      .flexMenu_block_item {
+        display: flex;
+        padding: 0 $base-padding;
+      }
+
+      ul.flexMenu_block {
+        flex-flow: row wrap;
+        justify-content: flex-start;
+      }
+    }
+  }
+
+}
