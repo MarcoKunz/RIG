@@ -25,6 +25,7 @@ html(lang="en")
     script(src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/highlight.min.js")
     script(src="//cdn.jsdelivr.net/velocity/1.2.2/velocity.min.js")
     script(src="//cdn.jsdelivr.net/velocity/1.2.2/velocity.ui.min.js")
+    script(src="/assets/js/rig.js" async="true")
 
   body
 
@@ -79,6 +80,7 @@ html(lang="en")
 
             include ./partials/_toc.jade
 
+        include ./partials/_get-started.jade
         include ./partials/_typography.jade
         include ./partials/_grid.jade
         include ./partials/_forms.jade
@@ -104,9 +106,15 @@ html(lang="en")
             p
               a(href="https://github.com/codeship/RIG" target="_blank") Find RIG on Github
 
-    script(src="/assets/js/rig.js" async="true")
     script(type="text/javascript").
       hljs.initHighlightingOnLoad();
+
+      var Rig = new Rig({
+        debug: true,
+        components: {
+          dropdowns: false
+        }
+      });
 
     script(type="text/javascript").
 
